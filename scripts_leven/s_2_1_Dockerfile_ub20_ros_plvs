@@ -1,0 +1,44 @@
+# /*
+#  * @Author: leven
+#  * @LastEditors: leven
+#  * @Description: 
+#  */
+FROM osrf/ros:noetic-desktop-full
+
+WORKDIR /workspace/src/ext_libs
+
+#替换源
+#最开始不支持https的源:需要先用http的源,并安装证书,再替换回https
+COPY ./s_2_3_fix_apt_sources.sh ./
+RUN ./s_2_3_fix_apt_sources.sh
+
+# # Set non-interactive mode during package installation
+# ARG DEBIAN_FRONTEND=noninteractive
+
+#安装tzdata需要交互,取消交互
+RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
+
+#安装基础工具
+RUN apt update && apt install unzip -y && \
+    apt install build-essential -y && \    
+    apt install cmake -y && \
+    apt install vim -y && \
+    apt install curl -y && \
+    apt install wget -y && \
+    apt install software-properties-common -y && \
+    apt install git -y
+RUN ldconfig
+
+#安装依赖项
+COPY ../install_dependencies.sh ./
+RUN ./install_dependencies.sh
+
+# RUN apt-get update --fix-missing && \
+#     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C8B3A55A6F3EFCDE && \
+#     apt-get update --fix-missing
+# 如何还一直报错:E: The repository 'https://librealsense.intel.com/Debian/apt-repo focal InRelease' is not signed.
+
+#自己重写安装opencv的逻辑,且最好提前下好opencv库
+
+#最后记得清除
+RUN rm -rf /var/lib/apt/lists/*
