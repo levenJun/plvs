@@ -81,7 +81,7 @@ int main(int argc, char **argv)
     int tot_images = 0;
     for (seq = 0; seq<num_seq; seq++)
     {
-        cout << "Loading images for sequence " << seq << "...";
+        cout << "Loading images for sequence " << seq << "..." << endl;
 
         string pathSeq(argv[(2*seq) + 3]);
         string pathTimeStamps(argv[(2*seq) + 4]);
@@ -91,10 +91,13 @@ int main(int argc, char **argv)
         string pathImu = pathSeq + "/mav0/imu0/data.csv";
 
         LoadImages(pathCam0, pathCam1, pathTimeStamps, vstrImageLeft[seq], vstrImageRight[seq], vTimestampsCam[seq]);
+        cout << "left size=" << vstrImageLeft[seq].size() << endl;
+        cout << "right size=" << vstrImageRight[seq].size() << endl;
         cout << "LOADED!" << endl;
 
         cout << "Loading IMU for sequence " << seq << "...";
         LoadIMU(pathImu, vTimestampsImu[seq], vAcc[seq], vGyro[seq]);
+        cout << "imu size=" << vTimestampsImu[seq].size() << endl;
         cout << "LOADED!" << endl;
 
         nImages[seq] = vstrImageLeft[seq].size();

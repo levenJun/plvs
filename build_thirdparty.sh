@@ -102,7 +102,12 @@ cmake .. -DCMAKE_BUILD_TYPE=Release $EXTERNAL_OPTION
 make -j 8
 cd $SCRIPT_DIR
 
-./install_local_g2o_new.sh $EXTERNAL_OPTION
+#不用连接git,用离线源码包安装
+# ./install_local_g2o_new.sh $EXTERNAL_OPTION
+scripts_leven/ThirdParty/install_local_g2o_new_simple.sh $EXTERNAL_OPTION
+
+#不用在此处安装opencv,在 config.sh 会执行安装脚本
+# scripts_leven/ThirdParty/install_local_pcl_simple.sh $EXTERNAL_OPTION
 
 print_blue '================================================'
 print_blue "Configuring and building Thirdparty/volumetric_mapping ... "
@@ -181,15 +186,16 @@ cd $SCRIPT_DIR
 
 print_blue '================================================'
 
-if [[ -n "$HAVE_SSE3" ]]; then
-    echo "Configuring and building Thirdparty/libelas-gpu ... "
-    cd Thirdparty/libelas-gpu
-    make_buid_dir
-    cd build
-    cmake .. -DCMAKE_BUILD_TYPE=Release $EXTERNAL_OPTION
-    make -j 8
-fi
-cd $SCRIPT_DIR
+#不开gpu
+# if [[ -n "$HAVE_SSE3" ]]; then
+#     echo "Configuring and building Thirdparty/libelas-gpu ... "
+#     cd Thirdparty/libelas-gpu
+#     make_buid_dir
+#     cd build
+#     cmake .. -DCMAKE_BUILD_TYPE=Release $EXTERNAL_OPTION
+#     make -j 8
+# fi
+# cd $SCRIPT_DIR
 
 print_blue '================================================'
 

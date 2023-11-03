@@ -219,3 +219,13 @@ Results/
 
 # Calibration
 Examples/Calibration/recorder-*
+scripts_leven/test4/
+scripts_leven/test2.sh
+scripts_leven/test3.sh
+scripts_leven/ThirdParty/g2o_new.zip
+scripts_leven/ThirdParty/opencv_contrib-4.8.0.zip
+scripts_leven/ThirdParty/opencv-4.8.0.zip
+scripts_leven/ThirdParty/pcl.zip
+
+scripts_leven/ThirdParty/opencv/
+scripts_leven/ThirdParty/opencv_contrib-4.8.0/

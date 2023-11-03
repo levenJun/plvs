@@ -105,7 +105,9 @@ fi
 
 # install a local opencv with CUDA support and more
 if [ $USE_LOCAL_OPENCV -eq 1 ] && [[ ! -n "$OpenCV_DIR" ]]; then
-	. install_local_opencv.sh   # source it in order to run it and get the env var OPENCV_VERSION
+	# . install_local_opencv.sh   # source it in order to run it and get the env var OPENCV_VERSION
+	# 本地有源码包,无需git下源码
+	. scripts_leven/ThirdParty/install_local_opencv_simple.sh   # source it in order to run it and get the env var OPENCV_VERSION
 	echo OpenCV version: $OPENCV_VERSION
 	if [[ $OPENCV_VERSION == 4* ]]; then
 		OpenCV_DIR="$CONFIG_DIR/Thirdparty/opencv/install/lib/cmake/opencv4"
