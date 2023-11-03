@@ -219,6 +219,8 @@ Results/
 
 # Calibration
 Examples/Calibration/recorder-*
+
+/data/
 scripts_leven/test4/
 scripts_leven/test2.sh
 scripts_leven/test3.sh
