@@ -79,29 +79,29 @@ set(SRCS_VOLUMETRIC_MAPPING
   ${PROJECT_SOURCE_DIR}/volumetric_mapping/octomap_world/src/octomap_world.cc
 )
 
-# fix 无法找到pcl_conversion.h的编译错误
-# 查找ROS
-find_package(catkin REQUIRED COMPONENTS roscpp)
+# # fix 无法找到pcl_conversion.h的编译错误
+# # 查找ROS
+# find_package(catkin REQUIRED COMPONENTS roscpp)
 
-# 打印ROS的include路径
-message("ROS include directories:")
-foreach(include_dir ${catkin_INCLUDE_DIRS})
-    message("  ${include_dir}")
-endforeach()
+# # 打印ROS的include路径
+# message("ROS include directories:")
+# foreach(include_dir ${catkin_INCLUDE_DIRS})
+#     message("  ${include_dir}")
+# endforeach()
 
-# 打印ROS的lib路径
-message("ROS library directories:")
-foreach(lib_dir ${catkin_LIBRARY_DIRS})
-    message("  ${lib_dir}")
-endforeach()
+# # 打印ROS的lib路径
+# message("ROS library directories:")
+# foreach(lib_dir ${catkin_LIBRARY_DIRS})
+#     message("  ${lib_dir}")
+# endforeach()
 
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
+# include_directories(
+#   ${catkin_INCLUDE_DIRS}
+# )
 
-link_directories(
-  ${catkin_LIBRARY_DIRS}
-)
+# link_directories(
+#   ${catkin_LIBRARY_DIRS}
+# )
 
 add_library(volumetric_mapping SHARED ${SRCS_VOLUMETRIC_MAPPING})
 target_link_libraries(volumetric_mapping ${OCTOMAP_LIBRARIES} ${OpenCV_LIBS} ${PCL_LIBRARIES})
