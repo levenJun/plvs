@@ -31,7 +31,7 @@ SEQUENCE="MH01"
 #V202
 #V203
 
-PATH_TO_SEQUENCE_FOLDER="/workspace/src/ext_libs/datasets/$SEQUENCE"
+PATH_TO_SEQUENCE_FOLDER="/data2/pjts/p2/3-slam/8-plvs/ws-remote/src/plvs-remote-2311/data/$SEQUENCE"
 OUTPUT_BASE_NAME="dataset_"$SEQUENCE"_stereoi"
 
 echo PATH_TO_SEQUENCE_FOLDER: $PATH_TO_SEQUENCE_FOLDER

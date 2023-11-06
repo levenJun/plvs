@@ -183,6 +183,9 @@ if [ ! -f ${INSTALL_PREFIX}/lib/libopencv_core.so ]; then
     fi
     make -j8
     make install 
+    
+    # sudo rm -r opencv 
+    # sudo rm -r ${TARFILE_CONTRIB}
 fi
 
 cd ${SCRIPT_DIR}

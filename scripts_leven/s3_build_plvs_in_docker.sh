@@ -50,26 +50,27 @@ BUILD_CONTAINER=${IMAGE_NAME}_container_for_build
 
 echo "PLVS_SRC_ROOT:${PLVS_SRC_ROOT}"
 
-sudo docker run -itd --name ${BUILD_CONTAINER} \
-         --volume /etc/localtime:/etc/localtime:ro \
-         --volume /tmp/.X11-unix:/tmp/.X11-unix \
-         -e DISPLAY=unix$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE \
-         --volume ${PLVS_SRC_ROOT}:${PLVS_SRC_ROOT} \
-         ${BUILD_IMAGE}  \
-         /bin/bash 
-
-sudo docker exec -it ${BUILD_CONTAINER} \
-         /bin/bash \
-        -c "cd ${PLVS_SRC_ROOT} && \\
-                apt update && \\
-                ./build.sh"
-
-# sudo docker run -it --name ${BUILD_CONTAINER} \
+# sudo docker run -itd --name ${BUILD_CONTAINER} \
 #          --volume /etc/localtime:/etc/localtime:ro \
 #          --volume /tmp/.X11-unix:/tmp/.X11-unix \
 #          -e DISPLAY=unix$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE \
 #          --volume ${PLVS_SRC_ROOT}:${PLVS_SRC_ROOT} \
 #          ${BUILD_IMAGE}  \
+#          /bin/bash 
+
+# sudo docker exec -it ${BUILD_CONTAINER} \
 #          /bin/bash \
 #         -c "cd ${PLVS_SRC_ROOT} && \\
+#                 apt update && \\
 #                 ./build.sh"
+
+sudo docker run --rm --name ${BUILD_CONTAINER} \
+         --volume /etc/localtime:/etc/localtime:ro \
+         --volume /tmp/.X11-unix:/tmp/.X11-unix \
+         -e DISPLAY=$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE \
+         --volume ${PLVS_SRC_ROOT}:${PLVS_SRC_ROOT} \
+         ${BUILD_IMAGE}  \
+         /bin/bash \
+        -c "cd ${PLVS_SRC_ROOT} && \\
+                apt update && \\
+                ./build.sh"

@@ -23,35 +23,36 @@ if [[ -n "$EXTERNAL_OPTION" ]]; then
 fi
 
 print_blue '================================================'
-print_blue "Configuring and building Thirdparty/g2o_new ..."
+print_blue "Configuring and building Thirdparty/Pangolin ..."
 
 cd Thirdparty
+if [[ ! -f Pangolin/build/src/libpangolin.so && ! -f Pangolin/build/libpango_core.so ]]; then
 
-if [[ ! -f g2o_new/install/lib/libg2o_core.so ]]; then
-
-    if [ -d g2o_new ]; then
-        sudo rm -r g2o_new
+    if [ -d Pangolin ]; then
+        sudo rm -r Pangolin
     fi
 
-    sudo apt install -y libqglviewer-dev-qt5  # to build g2o_viewer 
-	  # git clone https://github.com/RainerKuemmerle/g2o.git g2o_new
-    sudo cp ${BaseDir}/ThirdParty/g2o_new.zip ./
-    unzip g2o_new.zip && sudo rm -r g2o_new.zip
-    #git fetch --all --tags # to fetch tags 
-    cd g2o_new
-    git checkout tags/20230223_git   
-    git apply ../g2o.patch 
+	sudo apt-get install -y libglew-dev
+	# git clone https://github.com/stevenlovegrove/Pangolin.git
+    sudo cp ${BaseDir}/ThirdParty/Pangolin.zip ./
+    unzip Pangolin.zip && sudo rm -r Pangolin.zip
 
+    #git fetch --all --tags # to fetch tags 
+    cd Pangolin
+    #git checkout tags/v0.6
+    git checkout fe57db532ba2a48319f09a4f2106cc5625ee74a9
+    git apply ../pangolin.patch  # applied to commit fe57db532ba2a48319f09a4f2106cc5625ee74a9
+    
     if [ -d build ]; then
         sudo rm -r build
     fi
+
     make_buid_dir
 
 	cd build
-    G2O_OPTIONS="-DBUILD_WITH_MARCH_NATIVE=ON -DG2O_BUILD_EXAMPLES=OFF" 
-    echo "compiling with options: $G2O_OPTIONS $EXTERNAL_OPTION" 
-    cmake .. -DCMAKE_INSTALL_PREFIX="`pwd`/../install" -DCMAKE_BUILD_TYPE=Release $G2O_OPTIONS $EXTERNAL_OPTION
-	  make -j 8
-    make install 
-fi 
+	#cmake .. -DCMAKE_BUILD_TYPE=Release -DAVFORMAT_INCLUDE_DIR="" -DCPP11_NO_BOOST=ON $EXTERNAL_OPTION
+	cmake .. -DCMAKE_INSTALL_PREFIX="`pwd`/../install" -DCMAKE_BUILD_TYPE=Release $EXTERNAL_OPTION    
+	make -j 8
+        make install     
+fi
 cd $SCRIPT_DIR

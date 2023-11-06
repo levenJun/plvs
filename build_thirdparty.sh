@@ -57,27 +57,30 @@ fi
 print_blue '================================================'
 print_blue "Configuring and building Thirdparty/Pangolin ..."
 
-cd Thirdparty
-if [ ! -d Pangolin ]; then
-	sudo apt-get install -y libglew-dev
-	git clone https://github.com/stevenlovegrove/Pangolin.git
-    #git fetch --all --tags # to fetch tags 
-    cd Pangolin
-    #git checkout tags/v0.6
-    git checkout fe57db532ba2a48319f09a4f2106cc5625ee74a9
-    git apply ../pangolin.patch  # applied to commit fe57db532ba2a48319f09a4f2106cc5625ee74a9
-    cd .. 
-fi
-cd Pangolin
-make_buid_dir
-if [[ ! -f build/src/libpangolin.so && ! -f build/libpango_core.so ]]; then
-	cd build
-	#cmake .. -DCMAKE_BUILD_TYPE=Release -DAVFORMAT_INCLUDE_DIR="" -DCPP11_NO_BOOST=ON $EXTERNAL_OPTION
-	cmake .. -DCMAKE_INSTALL_PREFIX="`pwd`/../install" -DCMAKE_BUILD_TYPE=Release $EXTERNAL_OPTION    
-	make -j 8
-        make install     
-fi
-cd $SCRIPT_DIR
+# cd Thirdparty
+# if [ ! -d Pangolin ]; then
+# 	sudo apt-get install -y libglew-dev
+# 	git clone https://github.com/stevenlovegrove/Pangolin.git
+#     #git fetch --all --tags # to fetch tags 
+#     cd Pangolin
+#     #git checkout tags/v0.6
+#     git checkout fe57db532ba2a48319f09a4f2106cc5625ee74a9
+#     git apply ../pangolin.patch  # applied to commit fe57db532ba2a48319f09a4f2106cc5625ee74a9
+#     cd .. 
+# fi
+# cd Pangolin
+# make_buid_dir
+# if [[ ! -f build/src/libpangolin.so && ! -f build/libpango_core.so ]]; then
+# 	cd build
+# 	#cmake .. -DCMAKE_BUILD_TYPE=Release -DAVFORMAT_INCLUDE_DIR="" -DCPP11_NO_BOOST=ON $EXTERNAL_OPTION
+# 	cmake .. -DCMAKE_INSTALL_PREFIX="`pwd`/../install" -DCMAKE_BUILD_TYPE=Release $EXTERNAL_OPTION    
+# 	make -j 8
+#         make install     
+# fi
+# cd $SCRIPT_DIR
+
+#不用连接git,用离线源码包安装
+scripts_leven/ThirdParty/install_local_pangolin_simple.sh $EXTERNAL_OPTION
 
 print_blue '================================================'
 print_blue "Configuring and building Thirdparty/DBoW2 ..."
@@ -113,8 +116,9 @@ print_blue '================================================'
 print_blue "Configuring and building Thirdparty/volumetric_mapping ... "
 
 cd Thirdparty/volumetric_mapping
-if [ ! -d build ]; then
-    sudo apt-get install -y libgoogle-glog-dev
+sudo apt-get install -y libgoogle-glog-dev
+if [ -d build ]; then
+    sudo rm -r build
 fi
 make_buid_dir
 cd build
