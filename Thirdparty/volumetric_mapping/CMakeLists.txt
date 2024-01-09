@@ -60,6 +60,7 @@ ${PROJECT_SOURCE_DIR}/volumetric_mapping/minkindr/include
 )
 
 include_directories(
+/opt/ros/noetic/include
 ${VOLUMETRIC_MAPPING_INCLUDE_DIRS}
 ${EIGEN3_INCLUDE_DIR}
 ${OCTOMAP_INCLUDE_DIRS}

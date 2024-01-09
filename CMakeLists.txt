@@ -817,6 +817,16 @@ if(realsense2_FOUND)
     target_link_libraries(stereo_inertial_realsense_D435i_old ${CORE_LIBS} ${EXTERNAL_LIBS} ${EXTERNAL_CORE_LIBS})
 endif()
 
+#Test examples
+
+#Stereo Inertial examples
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples_Test/Stereo-Inertial)
+add_executable(stereo_inertial_test_vi
+        Examples_Test/Stereo-Inertial/stereo_inertial_test_vi.cc
+        Examples_Test/Stereo-Inertial/HeadDataReader.cpp
+        Examples_Test/Stereo-Inertial/tools.cpp
+        )
+target_link_libraries(stereo_inertial_test_vi ${PROJECT_NAME})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Vocabulary)
 add_executable(bin_vocabulary Vocabulary/bin_vocabulary.cpp)

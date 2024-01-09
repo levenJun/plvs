@@ -4,7 +4,8 @@
 
 #SUFFIX="_old" # comment if you want to use the new example binaries
 
-DATASET_BASE_FOLDER="$HOME/Work/datasets/tum_vi_dataset" #Example, it is necesary to change it by the dataset path
+# DATASET_BASE_FOLDER="$HOME/Work/datasets/tum_vi_dataset" #Example, it is necesary to change it by the dataset path
+DATASET_BASE_FOLDER="/media/delljun/Bubby/data2/datasets/TUM/" #Example, it is necesary to change it by the dataset path
 
 #DATASET_NAME="dataset-magistrale1_512_16"
 #DATASET_NAME="dataset-corridor1_512_16"
