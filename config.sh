@@ -28,9 +28,13 @@ fi
 export USE_LOCAL_OPENCV=1   # use a local installation of OpenCV
 
 # or you can set manullay OpenCV_DIR
-# export OpenCV_DIR="path to my OpenCV folder"
-# export OpenCV_DIR  # here not set 
+export OpenCV_DIR="$CONFIG_DIR/Thirdparty/opencv/install"
+export OpenCV_DIR  # here not set 
 
+echo "##################################################################"
+echo "CONFIG_DIR=$CONFIG_DIR"
+echo "OpenCV_DIR=$OpenCV_DIR"
+echo "##################################################################"
 export OPENCV_VERSION=4
 
 # ====================================================
@@ -38,7 +42,7 @@ export OPENCV_VERSION=4
 # ====================================================
 
 # N.B: if you do not have installed opencv with CUDA support you must set above:
-# USE_LOCAL_OPENCV=1
+USE_LOCAL_OPENCV=1
 
 # 1: ON, 0: OFF
 export USE_CUDA=0  # use CUDA in PLVS sparse SLAM  
@@ -117,7 +121,9 @@ fi
 
 # install a local opencv with CUDA support and more
 if [ $USE_LOCAL_OPENCV -eq 1 ] && [[ ! -n "$OpenCV_DIR" ]]; then
-	. install_local_opencv.sh   # source it in order to run it and get the env var OPENCV_VERSION
+	# . install_local_opencv.sh   # source it in order to run it and get the env var OPENCV_VERSION
+	# 本地有源码包,无需git下源码
+	. scripts_leven/ThirdParty/install_local_opencv_simple.sh   # source it in order to run it and get the env var OPENCV_VERSION
 	echo OpenCV version: $OPENCV_VERSION
 	if [[ $OPENCV_VERSION == 4* ]]; then
 		OpenCV_DIR="$CONFIG_DIR/Thirdparty/opencv/install/lib/cmake/opencv4"

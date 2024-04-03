@@ -227,3 +227,5 @@ Results/
 
 # Calibration
 Examples/Calibration/recorder-*
+scripts_leven/ThirdParty/opencv_contrib-4.8.0.zip
+scripts_leven/ThirdParty/opencv-4.8.0.zip

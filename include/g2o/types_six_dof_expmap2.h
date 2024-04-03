@@ -36,7 +36,7 @@
 #include "g2o/types_sba_line.h"
 
 #include <Eigen/Geometry>
-
+using namespace Eigen;
 namespace g2o {
   
 

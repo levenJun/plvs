@@ -7,14 +7,16 @@
 
 #echo "usage: ./${0##*/} "
 
-SUFFIX="_old" # comment if you want to use the new example binaries
+# SUFFIX="_old" # comment if you want to use the new example binaries
 
 EUROC_YAML="EuRoC.yaml"
 
-SEQUENCE="V102"
+# SEQUENCE="MH01"
+SEQUENCE="V101"
+# SEQUENCE="V102"
 #SEQUENCE="V202"
 #SEQUENCE="MH02"
-#SEQUENCE="MH03"
+# SEQUENCE="MH05"
 #SEQUENCE="V203" # difficult 
 
 # possibile sequences
@@ -30,7 +32,7 @@ SEQUENCE="V102"
 #V202
 #V203
 
-PATH_TO_SEQUENCE_FOLDER="$HOME/Work/datasets/rgbd_datasets/euroc/$SEQUENCE"
+# PATH_TO_SEQUENCE_FOLDER="$HOME/Work/datasets/rgbd_datasets/euroc/$SEQUENCE"
 OUTPUT_BASE_NAME="dataset_"$SEQUENCE"_stereoi"
 
 echo PATH_TO_SEQUENCE_FOLDER: $PATH_TO_SEQUENCE_FOLDER
